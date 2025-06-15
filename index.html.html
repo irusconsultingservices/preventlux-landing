@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PreventLux – Your Preventive Health Companion</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7fafc;
+      color: #2d3748;
+      line-height: 1.6;
+    }
+    a {
+      color: #2b6cb0;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header / Hero */
+    header {
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: linear-gradient(135deg, #4fd1c5 0%, #38b2ac 100%);
+      color: white;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    header p {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      font-weight: 500;
+    }
+    .btn-primary {
+      background-color: #2c7a7b;
+      color: white;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      background-color: #285e61;
+    }
+
+    /* Form */
+    form {
+      max-width: 450px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    input[type="email"] {
+      flex-grow: 1;
+      padding: 14px 16px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #cbd5e0;
+      outline-offset: 2px;
+      transition: border-color 0.3s ease;
+    }
+    input[type="email"]:focus {
+      border-color: #38b2ac;
+    }
+
+    /* Benefits Section */
+    .benefits {
+      margin: 60px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 40px;
+    }
+    .benefit-item {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgb(56 178 172 / 0.15);
+      text-align: center;
+      transition: box-shadow 0.3s ease;
+    }
+    .benefit-item:hover {
+      box-shadow: 0 8px 20px rgb(56 178 172 / 0.3);
+    }
+    .benefit-item h3 {
+      margin-bottom: 16px;
+      color: #285e61;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+    .benefit-item p {
+      font-size: 1rem;
+      color: #4a5568;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 25px 15px;
+      font-size: 0.9rem;
+      color: #718096;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 60px;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>PreventLux</h1>
+    <p>Your Personalized Preventive Health Companion for Luxembourg</p>
+    <form id="signup-form" onsubmit="handleSubmit(event)">
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your email for early access"
+        required
+      />
+      <button type="submit" class="btn-primary">Get Early Access</button>
+    </form>
+  </header>
+
+  <main class="container">
+    <section class="benefits" aria-label="Key benefits of PreventLux">
+      <article class="benefit-item">
+        <h3>Personalized Reminders</h3>
+        <p>Never miss a vaccination, screening, or check-up again with tailored alerts.</p>
+      </article>
+      <article class="benefit-item">
+        <h3>Multilingual Support</h3>
+        <p>Available in French, German, Luxembourgish, English, and Portuguese for all residents.</p>
+      </article>
+      <article class="benefit-item">
+        <h3>Trusted Health Tips</h3>
+        <p>Get simple, local, and expert-approved advice to stay healthy and informed.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 PreventLux. All rights reserved.
+  </footer>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      if (!email) {
+        alert('Please enter your email.');
+        return;
+      }
+      // For now, just thank the user (replace with actual backend call)
+      alert('Thank you for signing up, ' + email + '!');
+      document.getElementById('signup-form').reset();
+    }
+  </script>
+
+</body>
+</html>
