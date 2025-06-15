@@ -340,7 +340,145 @@
     </div>
   </header>
 
+  <!-- Home -->
   <section id="home">
     <div class="content">
       <h1>Preventive Healthcare for a Healthier Luxembourg</h1>
-      <p>Empowering
+      <p>Your partner in proactive health management — reducing risks and improving quality of life through early detection and lifestyle support.</p>
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Get Started</button>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2 class="section-title">About PreventLux</h2>
+    <p class="section-description">PreventLux is dedicated to transforming healthcare in Luxembourg by focusing on prevention rather than cure. We provide accessible resources, personalized risk assessments, and guidance to help individuals take control of their health before problems arise.</p>
+    <div class="content">
+      <p>Healthcare today often emphasizes treatment after illness. PreventLux aims to shift this paradigm by promoting preventive care through education, regular health screenings, and lifestyle coaching. Our platform connects residents with expert advice, screening schedules, and tools to monitor key health indicators.</p>
+      <p>We collaborate with healthcare providers, insurance companies, and community organizations to ensure preventive care is integrated seamlessly into daily life in Luxembourg. Our vision is a healthier population with fewer chronic diseases and lower healthcare costs.</p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-description">Comprehensive preventive healthcare services designed to keep you ahead of health risks.</p>
+    <div class="services-grid">
+      <div class="service-item">
+        <h3>Health Risk Assessment</h3>
+        <p>Personalized evaluations based on your lifestyle, family history, and current health data to identify potential risks early.</p>
+      </div>
+      <div class="service-item">
+        <h3>Regular Screening Reminders</h3>
+        <p>Automated notifications for scheduled health screenings and vaccinations, ensuring timely check-ups and prevention.</p>
+      </div>
+      <div class="service-item">
+        <h3>Lifestyle & Nutrition Coaching</h3>
+        <p>Guidance and plans tailored to your needs, helping you adopt healthier habits and manage chronic conditions.</p>
+      </div>
+      <div class="service-item">
+        <h3>Community Workshops & Events</h3>
+        <p>Educational sessions and group activities to raise awareness and motivate preventive health actions within your community.</p>
+      </div>
+      <div class="service-item">
+        <h3>Healthcare Provider Directory</h3>
+        <p>Easy access to local doctors, specialists, and preventive health services to facilitate seamless care coordination.</p>
+      </div>
+      <div class="service-item">
+        <h3>Digital Health Dashboard</h3>
+        <p>Track your health metrics, appointments, and progress all in one secure and easy-to-use platform.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works">
+    <h2 class="section-title">How PreventLux Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>Sign Up & Create Profile</h4>
+          <p>Register on PreventLux and fill out a detailed health questionnaire to personalize your preventive care journey.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>Receive Personalized Plan</h4>
+          <p>Get a tailored health risk assessment along with recommended screenings, vaccinations, and lifestyle changes.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>Track & Get Reminders</h4>
+          <p>Use your digital dashboard to monitor your progress and receive timely reminders for upcoming health checks.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h4>Access Support & Resources</h4>
+          <p>Join workshops, get coaching, and connect with healthcare providers through our integrated platform.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="section-description">Have questions or want to learn more? Reach out to our team.</p>
+    <form action="mailto:contact@preventlux.lu" method="POST" enctype="text/plain">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required placeholder="Your full name" />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com" />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required placeholder="Your message here"></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 PreventLux. All rights reserved. | <a href="mailto:contact@preventlux.lu">contact@preventlux.lu</a>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
+
+    menuToggle.addEventListener('click', () => {
+      navList.classList.toggle('open');
+    });
+
+    // Close menu on nav item click (mobile)
+    navList.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(navList.classList.contains('open')) {
+          navList.classList.remove('open');
+        }
+      });
+    });
+
+    // Highlight active nav link on scroll
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 70;
+        if(pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('href') ===
