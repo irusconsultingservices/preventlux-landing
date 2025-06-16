@@ -1,61 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preventive Healthcare - LuxCare</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preventive Healthcare</title>
+    
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Sticky Navbar */
+        .navbar {
+            background-color: #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .navbar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #4caf50;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-bottom: 5px solid #fff;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+        }
+
+        /* Icon Section */
+        .icon-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .icon-container div {
+            display: inline-block;
+            width: 30%;
+            padding: 20px;
+        }
+
+        .icon-container i {
+            font-size: 3rem;
+            color: #4caf50;
+        }
+
+        .icon-container h3 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        /* Tracker Section */
+        #tracker {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #e9f7df;
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            background-color: #e9f7df;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .testimonial {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .testimonial-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#health-tips">Health Tips</a></li>
-        <li><a href="#trackers">Trackers</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#tracker">Tracker</a></li>
+            <li><a href="#tips">Health Tips</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
-  </header>
 
-  <section id="home">
-    <div class="container">
-      <h1>Welcome to LuxCare</h1>
-      <p>Your go-to platform for preventive healthcare. Track your steps, stay hydrated, and get daily health tips!</p>
-      <button id="github-login-button">Login with GitHub</button>
+    <!-- Hero Section -->
+    <div class="hero">
+        <img src="https://images.unsplash.com/photo-1521747116042-5a810fda9664" alt="Preventive Healthcare Banner" class="hero-image">
+        <h1>Welcome to Preventive Healthcare</h1>
+        <p>Your guide to staying healthy and preventing diseases.</p>
     </div>
-  </section>
 
-  <section id="health-tips">
-    <div class="container">
-      <h2>Health Tips of the Day</h2>
-      <div class="tips">
-        <div class="tip">
-          <h3>Drink More Water</h3>
-          <p>Stay hydrated to boost your metabolism and improve overall health.</p>
+    <!-- Icon Section -->
+    <div class="icon-container">
+        <div>
+            <i class="fas fa-heartbeat"></i>
+            <h3>Healthy Heart</h3>
+            <p>Tips for a healthy cardiovascular system.</p>
         </div>
-        <div class="tip">
-          <h3>Walk 30 Minutes a Day</h3>
-          <p>Walking is one of the simplest and most effective exercises for good health.</p>
+        <div>
+            <i class="fas fa-apple-alt"></i>
+            <h3>Nutrition</h3>
+            <p>Healthy eating habits for better living.</p>
         </div>
-        <div class="tip">
-          <h3>Sleep 7-8 Hours</h3>
-          <p>Good sleep is essential for recovery and overall mental well-being.</p>
+        <div>
+            <i class="fas fa-running"></i>
+            <h3>Exercise</h3>
+            <p>Stay fit with daily workouts.</p>
         </div>
-      </div>
     </div>
-  </section>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 LuxCare | Preventive Healthcare</p>
-    </div>
-  </footer>
+    <!-- Tracker Section -->
+    <section id="tracker">
+        <h2>Track Your Health</h2>
+        <canvas id="healthChart" width="400" height="200"></canvas>
+        <script>
+            var ctx = document.getElementById('healthChart').getContext('2d');
+            var healthChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                    datasets: [{
+                        label: 'Steps Walked',
+                        data: [3000, 5000, 4000, 6000, 8000],
+                        borderColor: 'rgb(75, 192, 192)',
+                        fill: false,
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    </section>
 
-  <script src="js/app.js"></script>
+    <!-- Success Stories / Testimonials Section -->
+    <section id="testimonials">
+        <h2>Success Stories</h2>
+        <div class="testimonial">
+            <img src="https://images.unsplash.com/photo-1561553491-7fe3cd49854f" alt="User Image" class="testimonial-img">
+            <p>"Since using this app, I’ve been able to track my daily activity and make healthier decisions. I feel great!" – John D.</p>
+        </div>
+        <div class="testimonial">
+            <img src="https://images.unsplash.com/photo-1600941618235-5d968a7d8d7c" alt="User Image" class="testimonial-img">
+            <p>"The health tips and tracking features have been invaluable in improving my lifestyle." – Mary S.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Preventive Healthcare. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <script>
+        // Add any additional JS for functionalities
+    </script>
 </body>
 </html>
