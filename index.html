@@ -1,484 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PreventLux - Preventive Healthcare Luxembourg</title>
-  <style>
-    /* Reset & basics */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background-color: #f9fafb;
-    }
-    a {
-      color: #0077cc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Container */
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px 0;
-    }
-
-    /* Header & Nav */
-    header {
-      background: #005f73;
-      color: white;
-      padding: 15px 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .container-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-weight: 700;
-      font-size: 1.5rem;
-      letter-spacing: 2px;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-    nav ul li a {
-      color: white;
-      font-weight: 600;
-      font-size: 1rem;
-      padding: 5px 10px;
-      transition: background-color 0.3s ease;
-      border-radius: 5px;
-    }
-    nav ul li a:hover,
-    nav ul li a.active {
-      background-color: #0a9396;
-    }
-
-    /* Mobile nav */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-    .menu-toggle span {
-      height: 3px;
-      width: 25px;
-      background: white;
-      margin-bottom: 5px;
-      border-radius: 2px;
-    }
-    @media (max-width: 768px) {
-      nav ul {
-        position: fixed;
-        top: 60px;
-        right: 0;
-        background: #005f73;
-        height: calc(100% - 60px);
-        width: 200px;
-        flex-direction: column;
-        padding-top: 20px;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-      }
-      nav ul.open {
-        transform: translateX(0);
-      }
-      nav ul li {
-        margin-bottom: 20px;
-      }
-      .menu-toggle {
-        display: flex;
-      }
-    }
-
-    /* Hero Section */
-    #home {
-      background: url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-      height: 80vh;
-      display: flex;
-      align-items: center;
-      color: white;
-      text-align: center;
-      padding: 0 20px;
-      position: relative;
-    }
-    #home::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 95, 115, 0.7);
-      z-index: 0;
-    }
-    #home .content {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-      margin: auto;
-    }
-    #home h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      font-weight: 700;
-    }
-    #home p {
-      font-size: 1.25rem;
-      margin-bottom: 30px;
-      line-height: 1.5;
-    }
-    #home .btn-primary {
-      background-color: #0a9396;
-      color: white;
-      padding: 12px 30px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
-    #home .btn-primary:hover {
-      background-color: #94d2bd;
-      color: #005f73;
-    }
-
-    /* Sections */
-    section {
-      padding: 60px 0;
-    }
-    h2.section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      color: #005f73;
-    }
-    p.section-description {
-      max-width: 700px;
-      margin: 0 auto 50px auto;
-      font-size: 1.1rem;
-      color: #555;
-      text-align: center;
-      line-height: 1.6;
-    }
-
-    /* About */
-    #about .content {
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.1rem;
-      color: #444;
-      line-height: 1.7;
-      padding: 0 20px;
-    }
-
-    /* Services */
-    #services .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      max-width: 900px;
-      margin: auto;
-      padding: 0 20px;
-    }
-    .service-item {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      padding: 30px 20px;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-    .service-item:hover {
-      transform: translateY(-10px);
-    }
-    .service-item h3 {
-      color: #0a9396;
-      margin-bottom: 15px;
-    }
-    .service-item p {
-      color: #555;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    /* How It Works */
-    #how-it-works .steps {
-      max-width: 800px;
-      margin: auto;
-      padding: 0 20px;
-    }
-    .step {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 30px;
-    }
-    .step-number {
-      background: #0a9396;
-      color: white;
-      font-weight: 700;
-      font-size: 1.5rem;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 20px;
-      flex-shrink: 0;
-    }
-    .step-content h4 {
-      margin-bottom: 8px;
-      color: #005f73;
-    }
-    .step-content p {
-      color: #555;
-      font-size: 1rem;
-      line-height: 1.4;
-    }
-
-    /* Contact */
-    #contact form {
-      max-width: 600px;
-      margin: auto;
-      padding: 0 20px;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    }
-    #contact label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: #005f73;
-    }
-    #contact input,
-    #contact textarea {
-      width: 100%;
-      padding: 12px 10px;
-      margin-bottom: 20px;
-      border: 2px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-      resize: vertical;
-    }
-    #contact input:focus,
-    #contact textarea:focus {
-      border-color: #0a9396;
-      outline: none;
-    }
-    #contact button {
-      background-color: #0a9396;
-      color: white;
-      border: none;
-      padding: 15px 35px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-    }
-    #contact button:hover {
-      background-color: #94d2bd;
-      color: #005f73;
-    }
-
-    /* Footer */
-    footer {
-      background: #001219;
-      color: #94d2bd;
-      text-align: center;
-      padding: 25px 10px;
-      font-size: 0.9rem;
-      margin-top: 50px;
-    }
-    footer a {
-      color: #94d2bd;
-    }
-
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preventive Healthcare - LuxCare</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
 </head>
 <body>
-
   <header>
-    <div class="container container-header">
-      <div class="logo">PreventLux</div>
-      <nav>
-        <ul id="nav-list">
-          <li><a href="#home" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#how-it-works">How It Works</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="menu-toggle" id="mobile-menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </nav>
-    </div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#health-tips">Health Tips</a></li>
+        <li><a href="#trackers">Trackers</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Home -->
   <section id="home">
-    <div class="content">
-      <h1>Preventive Healthcare for a Healthier Luxembourg</h1>
-      <p>Your partner in proactive health management — reducing risks and improving quality of life through early detection and lifestyle support.</p>
-      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Get Started</button>
+    <div class="container">
+      <h1>Welcome to LuxCare</h1>
+      <p>Your go-to platform for preventive healthcare. Track your steps, stay hydrated, and get daily health tips!</p>
+      <button id="github-login-button">Login with GitHub</button>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about">
-    <h2 class="section-title">About PreventLux</h2>
-    <p class="section-description">PreventLux is dedicated to transforming healthcare in Luxembourg by focusing on prevention rather than cure. We provide accessible resources, personalized risk assessments, and guidance to help individuals take control of their health before problems arise.</p>
-    <div class="content">
-      <p>Healthcare today often emphasizes treatment after illness. PreventLux aims to shift this paradigm by promoting preventive care through education, regular health screenings, and lifestyle coaching. Our platform connects residents with expert advice, screening schedules, and tools to monitor key health indicators.</p>
-      <p>We collaborate with healthcare providers, insurance companies, and community organizations to ensure preventive care is integrated seamlessly into daily life in Luxembourg. Our vision is a healthier population with fewer chronic diseases and lower healthcare costs.</p>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services">
-    <h2 class="section-title">Our Services</h2>
-    <p class="section-description">Comprehensive preventive healthcare services designed to keep you ahead of health risks.</p>
-    <div class="services-grid">
-      <div class="service-item">
-        <h3>Health Risk Assessment</h3>
-        <p>Personalized evaluations based on your lifestyle, family history, and current health data to identify potential risks early.</p>
-      </div>
-      <div class="service-item">
-        <h3>Regular Screening Reminders</h3>
-        <p>Automated notifications for scheduled health screenings and vaccinations, ensuring timely check-ups and prevention.</p>
-      </div>
-      <div class="service-item">
-        <h3>Lifestyle & Nutrition Coaching</h3>
-        <p>Guidance and plans tailored to your needs, helping you adopt healthier habits and manage chronic conditions.</p>
-      </div>
-      <div class="service-item">
-        <h3>Community Workshops & Events</h3>
-        <p>Educational sessions and group activities to raise awareness and motivate preventive health actions within your community.</p>
-      </div>
-      <div class="service-item">
-        <h3>Healthcare Provider Directory</h3>
-        <p>Easy access to local doctors, specialists, and preventive health services to facilitate seamless care coordination.</p>
-      </div>
-      <div class="service-item">
-        <h3>Digital Health Dashboard</h3>
-        <p>Track your health metrics, appointments, and progress all in one secure and easy-to-use platform.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works -->
-  <section id="how-it-works">
-    <h2 class="section-title">How PreventLux Works</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-number">1</div>
-        <div class="step-content">
-          <h4>Sign Up & Create Profile</h4>
-          <p>Register on PreventLux and fill out a detailed health questionnaire to personalize your preventive care journey.</p>
+  <section id="health-tips">
+    <div class="container">
+      <h2>Health Tips of the Day</h2>
+      <div class="tips">
+        <div class="tip">
+          <h3>Drink More Water</h3>
+          <p>Stay hydrated to boost your metabolism and improve overall health.</p>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <div class="step-content">
-          <h4>Receive Personalized Plan</h4>
-          <p>Get a tailored health risk assessment along with recommended screenings, vaccinations, and lifestyle changes.</p>
+        <div class="tip">
+          <h3>Walk 30 Minutes a Day</h3>
+          <p>Walking is one of the simplest and most effective exercises for good health.</p>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <div class="step-content">
-          <h4>Track & Get Reminders</h4>
-          <p>Use your digital dashboard to monitor your progress and receive timely reminders for upcoming health checks.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <div class="step-content">
-          <h4>Access Support & Resources</h4>
-          <p>Join workshops, get coaching, and connect with healthcare providers through our integrated platform.</p>
+        <div class="tip">
+          <h3>Sleep 7-8 Hours</h3>
+          <p>Good sleep is essential for recovery and overall mental well-being.</p>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact">
-    <h2 class="section-title">Get in Touch</h2>
-    <p class="section-description">Have questions or want to learn more? Reach out to our team.</p>
-    <form action="mailto:contact@preventlux.lu" method="POST" enctype="text/plain">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" name="name" required placeholder="Your full name" />
-
-      <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" required placeholder="you@example.com" />
-
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="5" required placeholder="Your message here"></textarea>
-
-      <button type="submit">Send Message</button>
-    </form>
   </section>
 
   <footer>
-    &copy; 2025 PreventLux. All rights reserved. | <a href="mailto:contact@preventlux.lu">contact@preventlux.lu</a>
+    <div class="container">
+      <p>&copy; 2025 LuxCare | Preventive Healthcare</p>
+    </div>
   </footer>
 
-  <script>
-    // Mobile menu toggle
-    const menuToggle = document.getElementById('mobile-menu');
-    const navList = document.getElementById('nav-list');
-
-    menuToggle.addEventListener('click', () => {
-      navList.classList.toggle('open');
-    });
-
-    // Close menu on nav item click (mobile)
-    navList.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if(navList.classList.contains('open')) {
-          navList.classList.remove('open');
-        }
-      });
-    });
-
-    // Highlight active nav link on scroll
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('nav ul li a');
-
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 70;
-        if(pageYOffset >= sectionTop) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if(link.getAttribute('href') ===
+  <script src="js/app.js"></script>
+</body>
+</html>
